@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SnakeGame
 {
@@ -27,15 +28,20 @@ namespace SnakeGame
 
             // delay to slow down the character movement so you can see it
             int delayInMillisecs = 50;
-
             // whether to keep trails
             bool trail = false;
 
+            //Food Block
             var rand = new Random();
             bool food = false;
             int foodx = 0, foody = 2;
             bool foodPosition = false;
             int foodResetTime = 0;
+
+            int score = 0;
+
+            List<int> positionX = new List<int>();
+            List<int> positionY = new List<int>();
 
             do // until escape
             {
@@ -45,9 +51,11 @@ namespace SnakeGame
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(0, 0);
                 Console.WriteLine("Arrows move up/down/right/left. Press 'esc' quit.");
+                Console.WriteLine(positionX.Count);
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = cc;
 
+                // Food Start
                 if(food == false){
                     do{
                     foodx = rand.Next(0, 79);
@@ -75,6 +83,7 @@ namespace SnakeGame
                     food = false;
                     foodResetTime = 0;
                 }
+                // Food End
 
                 // see if a key has been pressed
                 if (Console.KeyAvailable)
@@ -83,23 +92,26 @@ namespace SnakeGame
                     consoleKey = Console.ReadKey(true);
                     switch (consoleKey.Key)
                     {
-                      
                         case ConsoleKey.UpArrow: //UP
+                            delayInMillisecs = 100;
                             dx = 0;
                             dy = -1;
                             Console.ForegroundColor = ConsoleColor.Red;
                             break;
                         case ConsoleKey.DownArrow: // DOWN
+                            delayInMillisecs = 100;
                             dx = 0;
                             dy = 1;
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             break;
                         case ConsoleKey.LeftArrow: //LEFT
+                            delayInMillisecs = 50;
                             dx = -1;
                             dy = 0;
                             Console.ForegroundColor = ConsoleColor.Green;
                             break;
                         case ConsoleKey.RightArrow: //RIGHT
+                            delayInMillisecs = 50;
                             dx = 1;
                             dy = 0;
                             Console.ForegroundColor = ConsoleColor.Black;
@@ -114,6 +126,12 @@ namespace SnakeGame
                 Console.SetCursorPosition(x, y);
                 if (trail == false)
                     Console.Write(' ');
+                
+                if (score > 0)
+                {
+                    Console.SetCursorPosition(positionX[positionX.Count-1], positionY[positionY.Count-1]);
+                    Console.Write(' ');
+                }
 
                 // calculate the new position
                 // note x set to 0 because we use the whole width, but y set to 1 because we use top row for instructions
@@ -132,6 +150,31 @@ namespace SnakeGame
                 // write the character in the new position
                 Console.SetCursorPosition(x, y);
                 Console.Write(ch);
+               
+                if (x == foodx && y == foody) 
+                    score++;  
+
+               
+                
+                    positionX.Insert(0, x);
+                    positionY.Insert(0, y);
+
+                    if (positionX.Count > score)
+                    {
+                        positionX.RemoveAt(score);
+                        positionY.RemoveAt(score);
+                    }
+                
+               
+
+                for (int i = 0; i < score; i++){
+                    Console.SetCursorPosition(positionX[i], positionY[i]);
+                    Console.Write(ch);
+                }
+
+
+               
+               
 
                 // pause to allow eyeballs to keep up
                 System.Threading.Thread.Sleep(delayInMillisecs);

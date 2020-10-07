@@ -9,3 +9,15 @@ D:\SWE20001 Development Project 1\Week 4\Task\SnakeGame\obj\Debug\netcoreapp2.0\
 D:\SWE20001 Development Project 1\Week 4\Task\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.AssemblyInfo.cs
 D:\SWE20001 Development Project 1\Week 4\Task\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.dll
 D:\SWE20001 Development Project 1\Week 4\Task\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.pdb
+C:\Projects\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.deps.json
+C:\Projects\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.runtimeconfig.json
+C:\Projects\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.runtimeconfig.dev.json
+C:\Projects\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.dll
+C:\Projects\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.pdb
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.csprojAssemblyReference.cache
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.AssemblyInfoInputs.cache
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.AssemblyInfo.cs
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.csproj.CoreCompileInputs.cache
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.dll
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.pdb
+C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.genruntimeconfig.cache
