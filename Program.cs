@@ -31,6 +31,12 @@ namespace SnakeGame
             // whether to keep trails
             bool trail = false;
 
+            var rand = new Random();
+            bool food = false;
+            int foodx = 0, foody = 2;
+            bool foodPosition = false;
+            int foodResetTime = 0;
+
             do // until escape
             {
                 // print directions at top, then restore position
@@ -41,6 +47,34 @@ namespace SnakeGame
                 Console.WriteLine("Arrows move up/down/right/left. Press 'esc' quit.");
                 Console.SetCursorPosition(x, y);
                 Console.ForegroundColor = cc;
+
+                if(food == false){
+                    do{
+                    foodx = rand.Next(0, 79);
+                    foody = rand.Next(2, 24);
+                    if(foodx != x && foody !=y){
+                        foodPosition = true;
+                    }
+                    } while (foodPosition == false);
+                    Console.SetCursorPosition(foodx, foody);
+                    Console.Write("o");
+                    foodPosition = false;
+                    food = true;
+                }
+
+                if(foodx == x && foody == y){
+                    food = false;
+                    foodResetTime = 0;
+                }
+
+                foodResetTime += 1;
+
+                if(foodResetTime == 100){
+                    Console.SetCursorPosition(foodx, foody);
+                    Console.WriteLine(' ');
+                    food = false;
+                    foodResetTime = 0;
+                }
 
                 // see if a key has been pressed
                 if (Console.KeyAvailable)
