@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SnakeGame
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             // start game
@@ -13,15 +15,21 @@ namespace SnakeGame
 
             // display this char on the console during the game
             char ch = '*';
-            char ch2 = '|';
+            char obstacle = '|';
             bool gameLive = true;
             ConsoleKeyInfo consoleKey; // holds whatever key is pressed
 
+            List<int> positionX = new List<int>();
+            List<int> positionY = new List<int>();
+
             // location info & display
-            int x = 0, y = 2; // y is 2 to allow the top row for directions & space
+            int x = 1, y = 2; 
+            positionX.Add(x);
+            positionY.Add(y);
             int dx = 1, dy = 0;
             int consoleWidthLimit = 79;
             int consoleHeightLimit = 24;
+           
 
             // clear to color
             Console.BackgroundColor = ConsoleColor.DarkGray;
@@ -29,20 +37,38 @@ namespace SnakeGame
 
             // delay to slow down the character movement so you can see it
             int delayInMillisecs = 50;
-            // whether to keep trails
-            bool trail = false;
 
             //Food Block
             var rand = new Random();
             bool food = false;
-            int foodx = 0, foody = 2;
+            int foodx = 0, foody = 0;
             bool foodPosition = false;
             int foodResetTime = 0;
 
+             //obstacle Block
+            bool obstacleCheck = false;
+            bool obstaclePosition = false;
+            int  obstacleResetTime = 0;
+            List<int> obstacleX = new List<int>();
+            List<int> obstacleY = new List<int>();
+
+
+
             int score = 0;
 
-            List<int> positionX = new List<int>();
-            List<int> positionY = new List<int>();
+            for (int i = 0; i < consoleWidthLimit; i++){
+                Console.SetCursorPosition(i, 1);
+                Console.Write('-');
+                Console.SetCursorPosition(i, consoleHeightLimit);
+                Console.Write('-');
+            }
+            for (int i = 0; i < consoleHeightLimit; i++){
+                Console.SetCursorPosition(0, i);
+                Console.Write('|');
+                Console.SetCursorPosition(consoleWidthLimit, i);
+                Console.Write('|');
+            }
+
 
             do // until escape
             {
@@ -51,20 +77,26 @@ namespace SnakeGame
                 ConsoleColor cc = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Arrows move up/down/right/left. Press 'esc' quit.");
-                Console.WriteLine(positionX.Count);
-                Console.SetCursorPosition(x, y);
+                Console.Write("Arrows move up/down/right/left. Press 'esc' quit.");
+                Console.Write("\tScore: {0}", score);
                 Console.ForegroundColor = cc;
 
                 // Food Start
                 if(food == false){
                     do{
-                    foodx = rand.Next(0, 79);
-                    foody = rand.Next(2, 24);
-                    if(foodx != x && foody !=y && (foodx != 0 && foody != 2)){
-                        foodPosition = true;
-                    }
+                        foodx = rand.Next(1, 78);
+                        foody = rand.Next(2, 23);
+
+                        if (positionX.Any())
+                        for (int i = 0; i < positionX.Count; i++)
+                        {
+                            if(foodx == x && foody == y)
+                                break;
+                            else
+                                foodPosition = true;
+                        }
                     } while (foodPosition == false);
+                    
                     Console.SetCursorPosition(foodx, foody);
                     Console.Write("o");
                     foodPosition = false;
@@ -85,11 +117,67 @@ namespace SnakeGame
                     foodResetTime = 0;
                 }
                 // Food End
+                
+                //obstacle
+                if(obstacleCheck == false)
+                do{
+                    int tempX = 0, tempY = 0;
+                    
+                    obstacleResetTime = 0;
+                    tempX = rand.Next(1, 78);
+                    tempY = rand.Next(2, 23);
+
+                    if (positionX.Any())
+                    for (int i = 0; i < positionX.Count; i++)
+                    {
+                        if(tempX == x && tempY == y)
+                            break;
+                        else
+                            obstaclePosition = true;
+                    }
+                    if (tempX == foodx && tempY == foody)
+                            obstaclePosition = false;
+                    if (obstaclePosition == true)
+                    {
+                        obstacleX.Insert(0, tempX);
+                        obstacleY.Insert(0, tempY);
+                    }
+                } while (obstaclePosition == false);
+                
+                for (int i =0; i < obstacleX.Count; i++)
+                {
+                    Console.SetCursorPosition(obstacleX[i], obstacleY[i]);
+                    Console.Write(obstacle);
+                }
+                obstacleCheck = true;
+                obstaclePosition = true;
+                obstacleResetTime += 1;
+
+                if(obstacleResetTime == 100){
+                    if(obstacleX.Count > 2)
+                    {
+                        Console.SetCursorPosition(obstacleX[3], obstacleY[3]);
+                        Console.WriteLine(' ');
+                        obstacleX.RemoveAt(obstacleX.Count - 1);
+                        obstacleY.RemoveAt(obstacleY.Count - 1);
+                    }
+                    
+                    obstacleCheck = false;
+                    obstacleResetTime = 0;
+                }
+               
+                
+
+                if (score > 0)
+                    Console.SetCursorPosition(positionX[positionX.Count-1], positionY[positionY.Count-1]);
+                else  
+                    Console.SetCursorPosition(x, y);
+                Console.Write(' ');
+
 
                 // see if a key has been pressed
                 if (Console.KeyAvailable)
                 {
-                    // get key and use it to set options
                     consoleKey = Console.ReadKey(true);
                     switch (consoleKey.Key)
                     {
@@ -123,59 +211,52 @@ namespace SnakeGame
                     }
                 }
 
-                // find the current position in the console grid & erase the character there if don't want to see the trail
-                Console.SetCursorPosition(x, y);
-                if (trail == false)
-                    Console.Write(' ');
-                
-                if (score > 0)
-                {
-                    Console.SetCursorPosition(positionX[positionX.Count-1], positionY[positionY.Count-1]);
-                    Console.Write(' ');
-                }
-
                 // calculate the new position
                 // note x set to 0 because we use the whole width, but y set to 1 because we use top row for instructions
                 x += dx;
-                if (x > consoleWidthLimit)
-                    x = 0;
-                if (x < 0)
-                    x = consoleWidthLimit;
-
                 y += dy;
-                if (y > consoleHeightLimit)
+
+                if (x > consoleWidthLimit - 1)
+                    x = 1;
+                if (x < 1)
+                    x = consoleWidthLimit - 1;
+
+                if (y > consoleHeightLimit - 1)
                     y = 2; // 2 due to top spaces used for directions
                 if (y < 2)
-                    y = consoleHeightLimit;
+                    y = consoleHeightLimit - 1;
 
-                // write the character in the new position
                 Console.SetCursorPosition(x, y);
                 Console.Write(ch);
+                
                
                 if (x == foodx && y == foody) 
                     score++;  
-
+                if (score == 100)
+                    gameLive = false;
                
-                
-                    positionX.Insert(0, x);
-                    positionY.Insert(0, y);
+                //snake growth
+                positionX.Insert(0, x);
+                positionY.Insert(0, y);
 
-                    if (positionX.Count > score)
-                    {
-                        positionX.RemoveAt(score);
-                        positionY.RemoveAt(score);
-                    }
-                
-               
+                if(positionX.Count > score + 1){
+                    positionX.RemoveAt(positionX.Count - 1);
+                    positionY.RemoveAt(positionY.Count - 1);
+                }
 
                 for (int i = 0; i < score; i++){
                     Console.SetCursorPosition(positionX[i], positionY[i]);
                     Console.Write(ch);
                 }
 
-
-               
-               
+                for (int i = 1; i < positionX.Count; i++){
+                    if (x == positionX[i] && y == positionY[i])
+                        gameLive = false;
+                }
+                for (int i = 0; i < obstacleX.Count; i++){
+                    if (x == obstacleX[i] && y == obstacleY[i])
+                        gameLive = false;
+                }
 
                 // pause to allow eyeballs to keep up
                 System.Threading.Thread.Sleep(delayInMillisecs);
@@ -189,9 +270,10 @@ namespace SnakeGame
                     Console.WriteLine("Game Over");
                     Console.SetCursorPosition(39, 13);
                     Console.WriteLine($"{score}");
+                    Console.SetCursorPosition(39, 14);
+                    Console.WriteLine("Press Enter to Continue");
                 } while(Console.ReadKey().Key != ConsoleKey.Enter);
             }
         }
     }
-    
 }
