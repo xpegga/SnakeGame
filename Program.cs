@@ -181,6 +181,14 @@ namespace SnakeGame
                 System.Threading.Thread.Sleep(delayInMillisecs);
 
             } while (gameLive);
+
+            if(!gameLive){
+                Console.Clear();
+                do{
+                    Console.SetCursorPosition(39, 12);
+                    Console.WriteLine("Game Over");
+                } while(Console.ReadKey().Key != ConsoleKey.Enter);
+            }
         }
     }
     
