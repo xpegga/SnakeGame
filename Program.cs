@@ -61,7 +61,7 @@ namespace SnakeGame
                     do{
                     foodx = rand.Next(0, 79);
                     foody = rand.Next(2, 24);
-                    if(foodx != x && foody !=y){
+                    if(foodx != x && foody !=y && (foodx != 0 && foody != 2)){
                         foodPosition = true;
                     }
                     } while (foodPosition == false);
@@ -187,6 +187,8 @@ namespace SnakeGame
                 do{
                     Console.SetCursorPosition(39, 12);
                     Console.WriteLine("Game Over");
+                    Console.SetCursorPosition(39, 13);
+                    Console.WriteLine($"{score}");
                 } while(Console.ReadKey().Key != ConsoleKey.Enter);
             }
         }
