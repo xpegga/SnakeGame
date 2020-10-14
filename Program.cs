@@ -13,6 +13,7 @@ namespace SnakeGame
 
             // display this char on the console during the game
             char ch = '*';
+            char ch2 = '|';
             bool gameLive = true;
             ConsoleKeyInfo consoleKey; // holds whatever key is pressed
 

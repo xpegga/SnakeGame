@@ -21,3 +21,14 @@ C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.csproj.CoreCompileInputs
 C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.dll
 C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.pdb
 C:\Projects\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.genruntimeconfig.cache
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.csprojAssemblyReference.cache
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.csproj.CoreCompileInputs.cache
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.AssemblyInfoInputs.cache
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.AssemblyInfo.cs
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.dll
+C:\Users\Agnes\SnakeGame\obj\Debug\netcoreapp2.0\SnakeGame.pdb
+C:\Users\Agnes\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.deps.json
+C:\Users\Agnes\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.runtimeconfig.json
+C:\Users\Agnes\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.runtimeconfig.dev.json
+C:\Users\Agnes\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.dll
+C:\Users\Agnes\SnakeGame\bin\Debug\netcoreapp2.0\SnakeGame.pdb
