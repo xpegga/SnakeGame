@@ -156,7 +156,7 @@ namespace SnakeGame
                 if(obstacleResetTime == 100){
                     if(obstacleX.Count > 2)
                     {
-                        Console.SetCursorPosition(obstacleX[3], obstacleY[3]);
+                        Console.SetCursorPosition(obstacleX[2], obstacleY[2]);
                         Console.WriteLine(' ');
                         obstacleX.RemoveAt(obstacleX.Count - 1);
                         obstacleY.RemoveAt(obstacleY.Count - 1);
