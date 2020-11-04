@@ -1,0 +1,13 @@
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.exe
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.deps.json
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.runtimeconfig.json
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.runtimeconfig.dev.json
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.dll
+C:\Projects\snakegame\bin\Debug\netcoreapp5.0\SnakeGame.pdb
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.csprojAssemblyReference.cache
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.AssemblyInfoInputs.cache
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.AssemblyInfo.cs
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.csproj.CoreCompileInputs.cache
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.dll
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.pdb
+C:\Projects\snakegame\obj\Debug\netcoreapp5.0\SnakeGame.genruntimeconfig.cache
