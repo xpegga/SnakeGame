@@ -17,11 +17,11 @@ namespace SnakeGame
             Food food = new Food('o', ConsoleColor.Blue, game.Height, game.Width, 300);
             Food life = new Food('^', ConsoleColor.Red, game.Height, game.Width, 2500);
             Food godMode = new Food('g', ConsoleColor.Yellow, game.Height, game.Width, 1700);
-            
+            Score score = new Score();
 
             int refreshRate = 16; //60fps
             game.DrawMap(ConsoleColor.Black, ConsoleColor.DarkYellow);
-            
+
             do
             {
                 game.DrawText(ConsoleColor.White, snake.Score);
@@ -49,6 +49,7 @@ namespace SnakeGame
             } while (game.GameLive);
 
             if(!game.GameLive){
+                score.RecordScore(snake);
                 Console.Clear();
                 Console.ResetColor();
             }
